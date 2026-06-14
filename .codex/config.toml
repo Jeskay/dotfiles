@@ -1,0 +1,29 @@
+# Set the default runtime profile
+model = "gpt-5.5"
+model_provider = "openai"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+
+[profiles.default]
+model_reasoning_effort = "high"
+# Explicit parameter fallbacks to stabilize the stream behavior
+model_context_window = 128000
+model_max_output_tokens = 4096
+
+[network]
+# Route all traffic through your proxy port over the WireGuard tunnel
+proxy_url = "http://10.133.0.50:8888"
+dangerously_allow_non_loopback_proxy = true
+
+[sandbox_workspace_write]
+network_access = true
+
+[projects."/home/jeskay/src/work/backend"]
+trust_level = "trusted"
+
+[projects."/home/jeskay"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
