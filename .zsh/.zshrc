@@ -75,3 +75,4 @@ export PATH="/home/jeskay/.local/bin:$PATH"
 
 # PATH variables
 export PATH="/home/jeskay/.cargo/bin:$PATH"
+export SUDO_EDITOR="nvim"
