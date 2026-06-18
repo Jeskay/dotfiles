@@ -7,6 +7,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.updatetime = 1000
 
+-- Sync wayland clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Removes neovim cmd line
 vim.opt.ruler = false
 vim.opt.showcmd = false
