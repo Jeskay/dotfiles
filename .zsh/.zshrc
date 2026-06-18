@@ -40,8 +40,27 @@ zinit light zsh-users/zsh-autosuggestions
 # Load completions
 autoload -U compinit && compinit
 
+# Interactive autocomplete
+zmodload zsh/complist
+# Enable interactive menu selection
+zstyle ':completion:*' menu select=2
+# Format completion menu
+zstyle ':completion:*:descriptions' format '[%d]' 
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+
+setopt AUTO_LIST
+setopt AUTO_MENU
+unsetopt MENU_COMPLETE
+
 # Keybindings
 bindkey -e
+# Vim keys for menu navigation
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # History
 HISTSIZE=2000
