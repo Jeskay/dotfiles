@@ -59,7 +59,7 @@ setopt hist_ignore_dups
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Aliases
-alias codex='HTTP_PROXY="http://10.133.0.50:8888" HTTPS_PROXY="http://10.133.0.50:8888" ALL_PROXY="http://10.133.50:8888" codex'
+alias codex='HTTP_PROXY="http://10.133.0.50:8888" HTTPS_PROXY="http://10.133.0.50:8888" ALL_PROXY="http://10.133.0.50:8888" /home/khrolenko/.nvm/versions/node/v24.16.0/bin/codex'
 
 # bun completions
 [ -s "/home/jeskay/.bun/_bun" ] && source "/home/jeskay/.bun/_bun"
@@ -76,3 +76,8 @@ export PATH="/home/jeskay/.local/bin:$PATH"
 # PATH variables
 export PATH="/home/jeskay/.cargo/bin:$PATH"
 export SUDO_EDITOR="nvim"
+
+# NVM variables
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

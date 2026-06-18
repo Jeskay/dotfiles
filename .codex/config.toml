@@ -24,6 +24,12 @@ trust_level = "trusted"
 [projects."/home/jeskay"]
 trust_level = "trusted"
 
+[projects."/home/khrolenko/src/pipeline"]
+trust_level = "trusted"
+
+[projects."/home/khrolenko/src/pipeline/pipeline-plus-builds"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
