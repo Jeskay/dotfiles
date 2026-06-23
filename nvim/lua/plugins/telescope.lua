@@ -7,7 +7,7 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 		},
-    "nvim-tree/nvim-web-devicons"
+		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -16,9 +16,9 @@ return {
 		telescope.setup({
 			defaults = {
 				vimgrep_arguments = {
-          "rg",
-          "--column",
-          "--color=never",
+					"rg",
+					"--column",
+					"--color=never",
 					"--no-heading",
 					"--with-filename",
 					"--line-number",
@@ -77,5 +77,6 @@ return {
 		keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find open buffers" })
 		keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
 		keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find recently opened files" })
+		keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy find in current buffer" })
 	end,
 }
