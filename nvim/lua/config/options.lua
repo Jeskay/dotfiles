@@ -10,6 +10,25 @@ vim.opt.updatetime = 1000
 -- Sync wayland clipboard
 vim.opt.clipboard = "unnamedplus"
 
+-- Clipboard sync over ssh
+local function is_ssh()
+  return vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+end
+
+if is_ssh() then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste("+"),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    }
+  }
+end
+
 -- Removes neovim cmd line
 vim.opt.ruler = false
 vim.opt.showcmd = false
