@@ -3,5 +3,6 @@ vim.lsp.enable({
   "lua_ls",
   "vtsls",
   "pyls",
-  "clangd"
+  "clangd",
+  "ktlsp",
 })

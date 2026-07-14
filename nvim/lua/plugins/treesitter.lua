@@ -9,9 +9,25 @@ return {
       install_dir = vim.fn.stdpath("data") .. "/site"
     })
 
-    local parsers = { "lua", "go", "javascript", "typescript", "tsx", "json", "markdown", "markdown_inline" }
+    local parsers = {
+      "c",
+      "cpp",
+      "go",
+      "javascript",
+      "json",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "tsx",
+      "typescript",
+    }
     ts.install(parsers)
-    vim.api.nvim_set_hl(0, "foo.bar", { link = "Identifier" })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "c", "cpp" },
+      callback = function()
+        vim.treesitter.start()
+      end,
+    })
   end,
 }
-
