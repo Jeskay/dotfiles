@@ -1,8 +1,12 @@
 local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
+
+-- Keybinding Settings
+
 -- Force modern key protocol
 config.enable_kitty_keyboard = true
+
 -- Leader Key
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
@@ -57,11 +61,12 @@ config.keys = {
 	{ key = "Numpad3", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "Numpad3", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
 }
+-- Appearance Settings
 
 config.font_size = 14
 config.font = wezterm.font("SauceCodePro Nerd Font")
 config.color_scheme = "nord"
--- 2 Layer background
+-- Tow-Layered background
 config.background = {
   {
     source = {
@@ -85,6 +90,16 @@ config.background = {
 			saturation = 0.5,
 		},
 	},
+}
+-- SSH Settings
+config.ssh_domains = {
+  {
+    name = 'lenovo-laptop',
+    remote_address = '10.133.0.76',
+    username = 'khrolenko',
+    multiplexing = "WezTerm",
+    remote_wezterm_path = '/usr/bin/wezterm',
+  }
 }
 
 return config
