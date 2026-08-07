@@ -19,11 +19,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 -- Find references in telescope
-vim.api.nvim_create_autocmd({"LspAttach"}, {
+vim.api.nvim_create_autocmd({ "LspAttach" }, {
   callback = function()
     vim.keymap.set("n", "gr", function()
       require("telescope.builtin").lsp_references()
-    end, {buffer = 0, noremap = true, silent = true})
+    end, { buffer = 0, noremap = true, silent = true })
   end
 })
 -- Toggle terminal window
@@ -38,4 +38,24 @@ vim.api.nvim_create_autocmd("RecordingEnter", {
 })
 vim.api.nvim_create_autocmd("RecordingLeave", {
   callback = function() vim.opt.cmdheight = 0 end,
+})
+-- Toggle image preview
+vim.api.nvim_create_autocmd("BufReadCmd", {
+  pattern = { "*.png", "*.jpg", "*.jpeg", "*.svg", "*.webp" },
+  callback = function(ev)
+    local filepath = vim.api.nvim_buf_get_name(ev.buf)
+
+    vim.bo[ev.buf].bufhidden = "wipe"
+    vim.bo[ev.buf].swapfile = false
+
+    vim.api.nvim_buf_call(ev.buf, function()
+      vim.fn.jobstart({
+        "chafa",
+        "--format=symbols",
+        filepath,
+      }, {
+        term = true,
+      })
+    end)
+  end,
 })
