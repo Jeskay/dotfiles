@@ -1,7 +1,7 @@
 # Set the default runtime profile
 model = "gpt-5.6-sol"
 model_provider = "openai"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 approval_policy = "on-request"
 
 [profiles.default]
@@ -34,6 +34,12 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/khrolenko/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/khrolenko/Downloads"]
+trust_level = "trusted"
+
+[projects."/home/khrolenko"]
 trust_level = "trusted"
 
 [tui.model_availability_nux]
