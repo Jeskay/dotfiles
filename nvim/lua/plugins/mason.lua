@@ -15,7 +15,7 @@ return {
     },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "gopls", "clangd" }
+        ensure_installed = { "lua_ls", "gopls", "clangd", "vtsls", "vue_ls" }
       })
     end
   }

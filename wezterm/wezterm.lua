@@ -4,7 +4,6 @@ local config = wezterm.config_builder()
 
 -- Keybinding Settings
 
--- Force modern key protocol
 config.enable_kitty_keyboard = true
 
 -- Leader Key
@@ -61,6 +60,18 @@ config.keys = {
 	{ key = "Numpad3", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "Numpad3", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
 }
+
+-- Work around WezTerm's Kitty encoder lowercasing shifted non-ASCII keys.
+local russian_uppercase = "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
+for _, codepoint in utf8.codes(russian_uppercase) do
+	local upper = utf8.char(codepoint)
+	table.insert(config.keys, {
+		key = "mapped:" .. upper,
+		mods = "SHIFT",
+		action = wezterm.action.SendString(upper),
+	})
+end
+
 -- Appearance Settings
 
 config.font_size = 14
@@ -78,7 +89,7 @@ config.background = {
   },
 	{
 		source = {
-			File = "/home/jeskay/Pictures/wallpaper/Mount.jpg",
+			File = "/home/jeskay/Pictures/wallpaper/current.png",
 		},
 		vertical_align = "Middle",
 		horizontal_align = "Center",

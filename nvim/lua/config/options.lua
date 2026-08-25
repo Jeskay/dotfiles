@@ -23,8 +23,19 @@ local function is_ssh()
 end
 
 if is_ssh() then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = osc52.copy("+"),
+      ["*"] = osc52.copy("*"),
+    },
+    paste = {
+      ["+"] = osc52.paste("+"),
+      ["*"] = osc52.paste("*"),
+    },
+  }
   vim.opt.clipboard = ""
-  vim.g.clipboard = "osc52"
 else
   vim.opt.clipboard = "unnamedplus"
 end

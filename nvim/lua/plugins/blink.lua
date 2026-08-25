@@ -37,6 +37,14 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
+      providers = {
+        path = {
+          should_show_items = function(ctx)
+            local before_cursor = ctx.line:sub(1, ctx.cursor[2])
+            return before_cursor:match([[['"]@/[^'"]*$]]) == nil
+          end,
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
