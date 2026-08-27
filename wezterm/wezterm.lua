@@ -89,7 +89,7 @@ config.background = {
   },
 	{
 		source = {
-			File = "/home/jeskay/Pictures/wallpaper/current.png",
+			File = "/home/jeskay/Pictures/wallpapers/current.png",
 		},
 		vertical_align = "Middle",
 		horizontal_align = "Center",

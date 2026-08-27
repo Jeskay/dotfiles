@@ -77,11 +77,16 @@ setopt hist_ignore_dups
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Aliases
-alias codex='HTTP_PROXY="http://10.133.0.50:8888" HTTPS_PROXY="http://10.133.0.50:8888" ALL_PROXY="http://10.133.0.50:8888" /home/khrolenko/.nvm/versions/node/v24.16.0/bin/codex'
+# Codex proxy wrapper function
+codex() {
+    HTTP_PROXY="http://10.133.0.50:8888" \
+    HTTPS_PROXY="http://10.133.0.50:8888" \
+    ALL_PROXY="http://10.133.0.50:8888" \
+    command codex "$@"
+}
 
 # bun completions
-[ -s "/home/jeskay/.bun/_bun" ] && source "/home/jeskay/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -89,11 +94,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # >>> Codex installer >>>
-export PATH="/home/jeskay/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # <<< Codex installer <<<
 
 # PATH variables
-export PATH="/home/jeskay/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export SUDO_EDITOR="nvim"
 export EDITOR="nvim"
 
