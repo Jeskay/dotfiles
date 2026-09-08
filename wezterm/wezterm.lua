@@ -10,66 +10,66 @@ config.enable_kitty_keyboard = true
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
-	-- Pane splitting
-	{
-		key = "v",
-		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "s",
-		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "x",
-		mods = "LEADER",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
-	{ key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
-	{ key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
-	{ key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
-	{ key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
-	-- Fix for backspace in zshell
-	{
-		key = "Backspace",
-		action = wezterm.action.SendString("\u{7f}"),
-	},
-	-- Fix for numpads
-	{
-		key = "Numpad3",
-		mods = "CTRL",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	{
-		key = "!",
-		mods = "LEADER",
-		action = wezterm.action_callback(function(win, pane)
-			pane:move_to_new_window()
-		end),
-	},
-	-- Brute-force catch-all for Numpad PageUp (Previous Tab)
-	{ key = "PageUp", mods = "CTRL", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "PageUp", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "Numpad9", mods = "CTRL", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "Numpad9", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+  -- Pane splitting
+  {
+    key = "v",
+    mods = "LEADER",
+    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+  },
+  {
+    key = "s",
+    mods = "LEADER",
+    action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+  },
+  {
+    key = "x",
+    mods = "LEADER",
+    action = wezterm.action.CloseCurrentPane({ confirm = true }),
+  },
+  { key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
+  { key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
+  { key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
+  { key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
+  -- Fix for backspace in zshell
+  {
+    key = "Backspace",
+    action = wezterm.action.SendString("\u{7f}"),
+  },
+  -- Fix for numpads
+  {
+    key = "Numpad3",
+    mods = "CTRL",
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  {
+    key = "!",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(win, pane)
+      pane:move_to_new_window()
+    end),
+  },
+  -- Brute-force catch-all for Numpad PageUp (Previous Tab)
+  { key = "PageUp",   mods = "CTRL",       action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "PageUp",   mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "Numpad9",  mods = "CTRL",       action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "Numpad9",  mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
 
-	-- Brute-force catch-all for Numpad PageDown (Next Tab)
-	{ key = "PageDown", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
-	{ key = "PageDown", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
-	{ key = "Numpad3", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
-	{ key = "Numpad3", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
+  -- Brute-force catch-all for Numpad PageDown (Next Tab)
+  { key = "PageDown", mods = "CTRL",       action = wezterm.action.ActivateTabRelative(1) },
+  { key = "PageDown", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
+  { key = "Numpad3",  mods = "CTRL",       action = wezterm.action.ActivateTabRelative(1) },
+  { key = "Numpad3",  mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
 }
 
 -- Work around WezTerm's Kitty encoder lowercasing shifted non-ASCII keys.
 local russian_uppercase = "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
 for _, codepoint in utf8.codes(russian_uppercase) do
-	local upper = utf8.char(codepoint)
-	table.insert(config.keys, {
-		key = "mapped:" .. upper,
-		mods = "SHIFT",
-		action = wezterm.action.SendString(upper),
-	})
+  local upper = utf8.char(codepoint)
+  table.insert(config.keys, {
+    key = "mapped:" .. upper,
+    mods = "SHIFT",
+    action = wezterm.action.SendString(upper),
+  })
 end
 
 -- Appearance Settings
@@ -77,6 +77,14 @@ end
 config.font_size = 14
 config.font = wezterm.font("SauceCodePro Nerd Font")
 config.color_scheme = "nord"
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+config.status_update_interval = 100
+config.colors = {
+  tab_bar = {
+    background = "#2E3440",
+  },
+}
 -- Tow-Layered background
 config.background = {
   {
@@ -87,20 +95,20 @@ config.background = {
     height = "100%",
     opacity = 1.0,
   },
-	{
-		source = {
-			File = "/home/jeskay/Pictures/wallpapers/current.png",
-		},
-		vertical_align = "Middle",
-		horizontal_align = "Center",
-		height = "Cover",
-		width = "Cover",
-		opacity = 0.1,
-		hsb = {
-			brightness = 0.2,
-			saturation = 0.5,
-		},
-	},
+  {
+    source = {
+      File = "/home/jeskay/Pictures/wallpapers/current.png",
+    },
+    vertical_align = "Middle",
+    horizontal_align = "Center",
+    height = "Cover",
+    width = "Cover",
+    opacity = 0.1,
+    hsb = {
+      brightness = 0.2,
+      saturation = 0.5,
+    },
+  },
 }
 -- SSH Settings
 config.ssh_domains = {
@@ -112,5 +120,20 @@ config.ssh_domains = {
     remote_wezterm_path = '/usr/bin/wezterm',
   }
 }
+-- Leader key indicator
+local tab_bg = "#2E3440"
+local accent = "#88C0D0"
 
+wezterm.on("update-right-status", function(window)
+  if window:leader_is_active() then
+    window:set_left_status(wezterm.format({
+      { Background = { Color = tab_bg } },
+      { Foreground = { Color = accent } },
+      { Attribute = { Intensity = "Bold" } },
+      { Text = " 󰌌  LEADER " },
+    }))
+  else
+    window:set_left_status("")
+  end
+end)
 return config
