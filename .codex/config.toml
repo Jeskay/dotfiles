@@ -3,6 +3,7 @@ model = "gpt-5.6-sol"
 model_provider = "openai"
 model_reasoning_effort = "high"
 approval_policy = "on-request"
+notify = ["/home/jeskay/.local/bin/codex-notify"]
 
 [profiles.default]
 model_reasoning_effort = "high"
@@ -24,6 +25,12 @@ trust_level = "trusted"
 [projects."/home/jeskay"]
 trust_level = "trusted"
 
+[projects."/home/jeskay/Developer/personal/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/jeskay/Developer/work/cognitive/backend"]
+trust_level = "trusted"
+
 [projects."/home/khrolenko/src/pipeline"]
 trust_level = "trusted"
 
@@ -42,7 +49,10 @@ trust_level = "trusted"
 [projects."/home/khrolenko"]
 trust_level = "trusted"
 
+[tui]
+notifications = false
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
-
+"gpt-6-astra" = 4
